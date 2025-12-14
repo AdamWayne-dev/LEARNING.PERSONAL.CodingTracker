@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.1" />
     <PackageReference Include="Spectre" Version="0.0.1" />
     <PackageReference Include="Spectre.Console" Version="0.54.0" />
   </ItemGroup>

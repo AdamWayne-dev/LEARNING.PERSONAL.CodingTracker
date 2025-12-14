@@ -5,6 +5,12 @@ namespace Coding_Tracker.Controllers
 {
     internal class ManualTimerSessionController : BaseController, ISessionController
     {
+        private readonly CodingSessionRepository _repo;
+        public ManualTimerSessionController(CodingSessionRepository repo)
+        {
+            _repo = repo;
+        }
+
         public void StartSession()
         {
             AnsiConsole.Prompt(new SelectionPrompt<string>().

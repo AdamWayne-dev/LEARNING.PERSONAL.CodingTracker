@@ -6,6 +6,7 @@
         internal enum MenuAction 
         {             
             StartCodingSession = 1,
+            ViewSessions,
             ViewStatistics,
             Settings,
             Exit
