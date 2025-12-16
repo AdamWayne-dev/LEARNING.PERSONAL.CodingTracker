@@ -27,7 +27,6 @@ namespace Coding_Tracker.Controllers
             {
                 session.StartTime,
                 session.EndTime,
-                session.Duration
             });
         }
 
