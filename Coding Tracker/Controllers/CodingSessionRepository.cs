@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
-using Coding_Tracker.Models;
 
 namespace Coding_Tracker.Controllers
 {
@@ -13,31 +12,27 @@ namespace Coding_Tracker.Controllers
             _connectionString = $"Data Source={databasePath}";
         }
 
-        private SqliteConnection CreateConnection() => new SqliteConnection(_connectionString);
+        private SqliteConnection OpenConnection() => new SqliteConnection(_connectionString);
 
-        public int Add(CodingSession session)
+        public int AddSession(CodingSession session)
         {
             const string sql = @"
                 INSERT INTO CodingSessions (StartTime, EndTime)
                 VALUES (@StartTime, @EndTime);
                 SELECT last_insert_rowid();";
 
-            using var connection = CreateConnection();
-            return connection.ExecuteScalar<int>(sql, new
-            {
-                session.StartTime,
-                session.EndTime,
-            });
+            using var connection = OpenConnection();
+            return connection.ExecuteScalar<int>(sql, session);
         }
 
-        public List<CodingSession> GetAll()
+        public List<CodingSession> GetAllSessions()
         {
             const string sql = @"
                 SELECT Id, StartTime, EndTime
                 FROM CodingSessions
                 ORDER BY StartTime DESC;";
 
-            using var connection = CreateConnection();
+            using var connection = OpenConnection();
             return connection.Query<CodingSession>(sql).ToList();
         }
     }

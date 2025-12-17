@@ -5,7 +5,7 @@ namespace Coding_Tracker
 {
     internal class UserInterface
     {
-
+        private readonly ConsoleUI _ui = new ConsoleUI();
         private readonly AutoTimerSessionController _autoTimerSessionController;
         private readonly ManualTimerSessionController _manualTimerSessionController;
         private readonly CodingSessionRepository _repo;
@@ -13,7 +13,7 @@ namespace Coding_Tracker
         public UserInterface(CodingSessionRepository repo)
         {
             _repo = repo;
-            _autoTimerSessionController = new AutoTimerSessionController(_repo);
+            _autoTimerSessionController = new AutoTimerSessionController(_repo, _ui);
             _manualTimerSessionController = new ManualTimerSessionController(_repo);
         }
         internal void MainMenu()
@@ -85,7 +85,7 @@ namespace Coding_Tracker
 
         private void ShowSessions()
         {
-            var sessions = _repo.GetAll();
+            var sessions = _repo.GetAllSessions();
 
             AnsiConsole.Clear();
             if (sessions.Count == 0)

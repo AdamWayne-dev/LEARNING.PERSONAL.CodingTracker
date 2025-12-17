@@ -4,30 +4,26 @@ using Coding_Tracker.Controllers;
 
 namespace Coding_Tracker.Controllers
 {
-    internal class AutoTimerSessionController : BaseController, ISessionController
+    internal class AutoTimerSessionController : ISessionController
     {
-
+        private readonly ConsoleUI _ui;
         private readonly CodingSessionRepository _repo;
-        public AutoTimerSessionController(CodingSessionRepository repo)
+        public AutoTimerSessionController(CodingSessionRepository repo, ConsoleUI ui)
         {
             _repo = repo;
+            _ui = ui;
         }
 
         public void StartSession()
         {
-            _repo.Add(new CodingSession
-            {
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddHours(1) // Placeholder end time
-            });
-            AnsiConsole.Prompt(new SelectionPrompt<string>().
-                Title("Auto-timer session started. Press any key to end the session...")
-                .AddChoices(new[] { "End Session" }));
+            var start = DateTime.Now;
+            
+            _ui.DisplayMessage("Auto-timer session started. Press any key to end the session...", false);
 
+            var end = DateTime.Now;
+
+            _repo.AddSession(CodingSession.Create(start, end));
         }
-        public void EndSession()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

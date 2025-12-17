@@ -2,9 +2,9 @@
 
 namespace Coding_Tracker.Controllers
 {
-    internal abstract class BaseController
+    internal class ConsoleUI
     {
-        protected void DisplayMessage(string message, bool isError, string colour = "yellow")
+        public void DisplayMessage(string message, bool isError, string colour = "yellow")
         {
             var panel = new Panel(message)
             {
@@ -18,7 +18,7 @@ namespace Coding_Tracker.Controllers
             Console.ReadKey(true);
         }
 
-        protected bool ConfirmDeletion(string itemName)
+        public bool ConfirmDeletion(string itemName)
         {
             return AnsiConsole.Confirm($"[red]Are you sure you want to delete[/] [yellow]{itemName}[/]? This action cannot be undone.");
         }

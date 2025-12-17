@@ -4,7 +4,7 @@ using Coding_Tracker.Controllers;
 
 var dbPath = "coding_Tracker.db";
 
-var dbController = new DatabaseController(dbPath);
+var databaseInitialiser = new DatabaseInitialiser(dbPath);
 var repo = new CodingSessionRepository(dbPath);
 
 var userInterface = new UserInterface(repo);

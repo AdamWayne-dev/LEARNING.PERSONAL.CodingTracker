@@ -1,10 +1,20 @@
-﻿namespace Coding_Tracker.Models
+﻿internal class CodingSession
 {
-    internal class CodingSession
+    public int Id { get; set; }
+    public DateTime StartTime { get; private set; }
+    public DateTime EndTime { get; private set; }
+
+    public TimeSpan Duration => EndTime - StartTime;
+
+    public static CodingSession Create(DateTime startTime, DateTime endTime)
     {
-        public int Id { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public TimeSpan Duration => EndTime - StartTime;
+        if (endTime < startTime)
+            throw new ArgumentException("EndTime must be after StartTime.");
+
+        return new CodingSession
+        {
+            StartTime = startTime,
+            EndTime = endTime
+        };
     }
 }
