@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using Coding_Tracker.Repositories;
+using Spectre.Console;
 
 namespace Coding_Tracker.Controllers
 {
@@ -12,6 +13,8 @@ namespace Coding_Tracker.Controllers
 
         public void StartSession()
         {
+
+            // Prompt the user to use a specific date format and then enforce it.
             AnsiConsole.Prompt(new SelectionPrompt<string>().
                Title("Manual-timer session started. Press any key to end the session...")
                .AddChoices(new[] { "End Session" }));

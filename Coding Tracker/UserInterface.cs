@@ -1,4 +1,5 @@
 ﻿using Coding_Tracker.Controllers;
+using Coding_Tracker.Repositories;
 using Spectre.Console;
 using static Coding_Tracker.Models.Enums;
 namespace Coding_Tracker

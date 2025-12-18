@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
 
-namespace Coding_Tracker.Controllers
+namespace Coding_Tracker.Repositories
 {
     internal class CodingSessionRepository
     {

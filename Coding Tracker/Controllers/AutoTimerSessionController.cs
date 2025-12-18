@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 using Coding_Tracker.Models;
-using Coding_Tracker.Controllers;
+using Coding_Tracker.Repositories;
 
 namespace Coding_Tracker.Controllers
 {
