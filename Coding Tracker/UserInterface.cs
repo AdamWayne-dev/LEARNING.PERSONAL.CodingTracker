@@ -15,7 +15,7 @@ namespace Coding_Tracker
         {
             _repo = repo;
             _autoTimerSessionController = new AutoTimerSessionController(_repo, _ui);
-            _manualTimerSessionController = new ManualTimerSessionController(_repo);
+            _manualTimerSessionController = new ManualTimerSessionController(_repo, _ui);
         }
         internal void MainMenu()
         {
@@ -32,7 +32,7 @@ namespace Coding_Tracker
 
                 switch (choice) {
 
-                    case MenuAction.StartCodingSession:
+                    case MenuAction.Start_Coding_Session:
                         bool flowControl = StartSession();
                         if (!flowControl)
                         {
@@ -40,19 +40,9 @@ namespace Coding_Tracker
                         }
                         break;
 
-                    case MenuAction.ViewSessions:
+                    case MenuAction.View_Sessions:
                         ShowSessions();
 
-                        break;
-
-                    case MenuAction.ViewStatistics:
-                        //var statsViewer = new StatisticsViewer();
-                        //statsViewer.DisplayStatistics();
-                        break;
-
-                    case MenuAction.Settings:
-                        //var settingsManager = new SettingsManager();
-                        //settingsManager.ConfigureSettings();
                         break;
 
                     case MenuAction.Exit:
@@ -71,13 +61,13 @@ namespace Coding_Tracker
                                     .AddChoices(Enum.GetValues<SessionMenuAction>()));
             switch (sessionType)
             {
-                case SessionMenuAction.StartTimer:
+                case SessionMenuAction.Start_Timer:
                     _autoTimerSessionController.StartSession();
                     break;
-                case SessionMenuAction.EnterTimeManually:
+                case SessionMenuAction.Enter_Time_Manually:
                     _manualTimerSessionController.StartSession();
                     break;
-                case SessionMenuAction.BackToMainMenu:
+                case SessionMenuAction.Back_To_Main_Menu:
                     return false;
             }
 
@@ -97,7 +87,7 @@ namespace Coding_Tracker
             {
                 foreach (var s in sessions)
                 {
-                    AnsiConsole.MarkupLine($"[green]Session ID:[/] {s.Id}, [green]Start Time:[/] {s.StartTime}, [green]End Time:[/] {s.EndTime}, [green]Duration:[/] {s.Duration}");
+                    AnsiConsole.MarkupLine($"[green]Session ID:[/] {s.Id}, [green]Start Time:[/] {s.StartTime}, [green]End Time:[/] {s.EndTime}, [green]Duration:[/] {s.Duration:hh\\:mm\\:ss}");
                 }
             }
             AnsiConsole.MarkupLine("\nPress any key to return to the main menu...");

@@ -6,18 +6,21 @@ namespace Coding_Tracker.Controllers
     internal class ManualTimerSessionController : ISessionController
     {
         private readonly CodingSessionRepository _repo;
-        public ManualTimerSessionController(CodingSessionRepository repo)
+        private readonly ConsoleUI _ui;
+        public ManualTimerSessionController(CodingSessionRepository repo, ConsoleUI ui)
         {
             _repo = repo;
+            _ui = ui;
         }
 
         public void StartSession()
         {
+            var start = _ui.PromptForDateTime("Enter the [green]start[/] date and time");
+            var end = _ui.PromptForDateTime("Enter the [red]end[/] date and time");
 
-            // Prompt the user to use a specific date format and then enforce it.
-            AnsiConsole.Prompt(new SelectionPrompt<string>().
-               Title("Manual-timer session started. Press any key to end the session...")
-               .AddChoices(new[] { "End Session" }));
+            _repo.AddSession(CodingSession.Create(start, end));
         }
+
+
     }
 }

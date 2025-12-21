@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using Microsoft.Extensions.Configuration;
+using Coding_Tracker.Repositories;
 using Coding_Tracker;
 using Coding_Tracker.Controllers;
 

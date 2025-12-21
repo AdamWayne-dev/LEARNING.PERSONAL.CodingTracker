@@ -5,34 +5,16 @@
 
         internal enum MenuAction 
         {             
-            StartCodingSession = 1,
-            ViewSessions,
-            ViewStatistics,
-            Settings,
+            Start_Coding_Session = 1,
+            View_Sessions,
             Exit
         }
 
         internal enum SessionMenuAction 
         {
-            StartTimer = 1,
-            EnterTimeManually,
-            BackToMainMenu
-        }
-
-        internal enum TimeFrame 
-        {
-            Daily = 1,
-            Weekly,
-            Monthly,
-            Yearly,
-            AllTime
-        }
-
-        internal enum SettingOption 
-        {
-            ChangeDailyGoal = 1,
-            ChangeTheme,
-            BackToMainMenu
+            Start_Timer = 1,
+            Enter_Time_Manually,
+            Back_To_Main_Menu
         }
     }
 }
