@@ -45,6 +45,9 @@ namespace Coding_Tracker
 
                         break;
 
+                    case MenuAction.View_Previous_30_Day_Activity_Heatmap:
+                        _ui.DisplayActivityHeatMap(_repo.GetAllSessions());
+                        break;
                     case MenuAction.Exit:
                         Environment.Exit(0);
                         return;
