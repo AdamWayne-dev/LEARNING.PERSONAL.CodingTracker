@@ -3,15 +3,15 @@
     internal class Enums
     {
 
-        internal enum MenuAction 
-        {             
+        internal enum MenuAction
+        {
             Start_Coding_Session = 1,
             View_Sessions,
             View_Previous_30_Day_Activity_Heatmap,
             Exit
         }
 
-        internal enum SessionMenuAction 
+        internal enum SessionMenuAction
         {
             Start_Timer = 1,
             Enter_Time_Manually,
@@ -21,7 +21,7 @@
         internal enum ViewSessionsAction
         {
             View_All_Sessions = 1,
-            View_Sessions_By_Date,
+            View_Sessions_From_Set_Date_Selection,
             Back_To_Main_Menu
         }
     }

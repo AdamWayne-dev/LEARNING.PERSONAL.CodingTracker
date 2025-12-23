@@ -1,5 +1,4 @@
-﻿using Coding_Tracker.Models;
-using Spectre.Console;
+﻿using Spectre.Console;
 using Spectre.Console.Rendering;
 using System.Data;
 
@@ -30,35 +29,28 @@ namespace Coding_Tracker.Controllers
 
         public DateTime PromptForDateTime(string prompt)
         {
+            return PromptUntilValid(
+                prompt,
+                DateFormat.ToLower(),
+                input => DateTimeValidator.ValidateDateResponse(input, DateFormat),
+                $"Invalid date format. Please use the format: {DateFormat.ToLower()}");
+        }
+
+        private T PromptUntilValid<T>(string prompt, string formatHint, Func<string, T> parse, string errorMessage)
+        {
             while (true)
             {
                 try
                 {
-                    var input = AnsiConsole.Ask<string>($"{prompt} (format: {DateFormat.ToLower()}):");
-                    return DateTimeValidator.ValidateDateResponse(input, DateFormat);
+                    var input = AnsiConsole.Ask<string>($"{prompt} format: {formatHint}:");
+                    return parse(input);
                 }
                 catch (FormatException)
                 {
-                    DisplayMessage($"Invalid date format. Please use the format: {DateFormat.ToLower()}", true);
+                    DisplayMessage(errorMessage, true);
                 }
             }
         }
-
-        //public TimeSpan PromptForTimeSpan(string prompt)
-        //{
-        //    while (true)
-        //    {
-        //        try
-        //        {
-        //            var input = AnsiConsole.Ask<string>($"{prompt} (format: hh:mm):");
-        //            return TimeSpanValidator.ValidateTimeSpanResponse(input);
-        //        }
-        //        catch (FormatException)
-        //        {
-        //            DisplayMessage("Invalid time format. Please use the format: hh:mm", true);
-        //        }
-        //    }
-        //}
 
         public void DisplayActivityHeatMap(List<CodingSession> sessions)
         {
